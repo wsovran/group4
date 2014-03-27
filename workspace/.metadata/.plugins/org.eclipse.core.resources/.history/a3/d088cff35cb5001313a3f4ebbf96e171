@@ -1,0 +1,52 @@
+package com.example.archer;
+
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
+{
+	private GameThread thread;
+	private Archer archer;
+
+ public MainGamePanel(Context context) {
+	 super(context);
+	 getHolder().addCallback(this);
+	 
+	 //init actors
+	 archer = new Archer(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 50, 50);
+	 
+	 
+	 thread = new GameThread(getHolder(), this);//create thread
+	 setFocusable(true);
+ }
+
+ @Override
+ public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+ }
+
+ @Override
+ public void surfaceCreated(SurfaceHolder holder) {
+	 thread.setRunning(true);
+	 thread.start();
+ }
+
+ @Override
+ public void surfaceDestroyed(SurfaceHolder holder) {
+ }
+
+ @Override
+ public boolean onTouchEvent(MotionEvent event) {
+  return super.onTouchEvent(event);
+ }
+
+ @Override
+ protected void onDraw(Canvas canvas) {
+	 canvas.drawColor(Color.BLACK);
+	 archer.draw(canvas);
+ }
+}

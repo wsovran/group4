@@ -2,14 +2,17 @@ package com.example.archer;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.view.Menu;
 
-public class GameActivity extends Activity {
+public class GameActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_game);
+		//setContentView(R.layout.activity_game);
+		setContentView(new MainGamePanel(this));//set the content view to the Game Controller
+
 	}
 
 	@Override

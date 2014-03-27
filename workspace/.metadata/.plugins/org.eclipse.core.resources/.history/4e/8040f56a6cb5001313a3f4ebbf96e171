@@ -1,0 +1,85 @@
+package com.example.archer;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+public class DPad {
+	private Bitmap bitmap; // the actual bitmap
+	 private int x;   // the X coordinate
+	 private int y;   // the Y coordinate
+	 private boolean touched;//state
+
+	 public DPad(Bitmap bitmap, int x, int y) {
+	  this.bitmap = bitmap;
+	  this.x = x;
+	  this.y = y;
+	 }
+
+	 public Bitmap getBitmap() {
+	  return bitmap;
+	 }
+	 public void setBitmap(Bitmap bitmap) {
+	  this.bitmap = bitmap;
+	 }
+	 public int getX() {
+	  return x;
+	 }
+	 public void setX(int x) {
+	  this.x = x;
+	 }
+	 public int getY() {
+	  return y;
+	 }
+	 public void setY(int y) {
+	  this.y = y;
+	 }
+	 public boolean isTouched() {
+	  return touched;
+	 }
+
+	 public void setTouched(boolean touched) {
+	  this.touched = touched;
+	 }
+
+	 public void draw(Canvas canvas) {
+	  canvas.drawBitmap(bitmap, x, y, null);
+	 }
+	 public void handleActionDown(int eventX, int eventY)
+	 {
+		 
+	 }
+	 public int calcQuad(int eventX, int eventY)
+	 {
+		 int quad = -1;
+		 int width = bitmap.getWidth() +x;
+		 int height = bitmap.getHeight() +y;
+		 if(eventX >= x && eventX < (width/3) && eventY >= y && y < (height/3))
+		 {
+			 return 1;
+		 }
+		 if(eventX >= (width/3) && eventX < ((2*width)/3) && eventY >= y && y < ((height)/3))
+		 {
+			 return 2;
+		 }
+		 if(eventX >= ((2*width)/3) && eventX < width && eventY >= y && y < ((height)/3))
+		 {
+			 return 3;
+		 }
+		 if(eventX >= x && eventX < (width/3) && eventY >= (height/3) && y < (2*height/3))
+		 {
+			 return 4;
+		 }
+		 if(eventX >= (width/3) && eventX < ((2*width)/3) && eventY >= (height/3) && y < ((2*height)/3))
+		 {
+			 return 5;
+		 }
+		 if(eventX >= x && eventX < (width/3) && eventY >= (height/3) && y < (2*height/3))
+		 {
+			 return 4;
+		 }
+		 
+		 
+		 return quad;
+	 }
+
+}
