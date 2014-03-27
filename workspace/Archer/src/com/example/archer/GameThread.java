@@ -10,6 +10,7 @@ public class GameThread extends Thread {
  private SurfaceHolder surfaceHolder;
  private MainGamePanel gamePanel;
  private boolean running;
+ 
  public void setRunning(boolean running) {
   this.running = running;
  }
@@ -35,6 +36,7 @@ public class GameThread extends Thread {
 				synchronized (surfaceHolder) {
 				     // update game state
 				     // draws the canvas on the panel
+					this.gamePanel.updateArcher();
 					this.gamePanel.onDraw(canvas);
 			    }
 			}

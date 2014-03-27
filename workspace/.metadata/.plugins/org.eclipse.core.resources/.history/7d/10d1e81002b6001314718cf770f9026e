@@ -1,0 +1,10 @@
+package com.example.archer;
+
+public class RepeatAction extends Thread {
+	boolean continueAction = false;
+	public RepeatAction()
+	{
+		
+	}
+
+}

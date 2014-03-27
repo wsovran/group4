@@ -15,6 +15,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	private GameThread thread;
 	private Archer archer;
 	private DPad dpad;
+	private Shoot shoot;
 	private static final String TAG = MainGamePanel.class.getSimpleName();
 
  public MainGamePanel(Context context) {
@@ -25,7 +26,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 archer = new Archer(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 50, 50);
 	 
 	 //init dpad
-	 dpad = new DPad(BitmapFactory.decodeResource(getResources(), R.drawable.d_pad), 0, 475);
+	 dpad = new DPad(BitmapFactory.decodeResource(getResources(), R.drawable.d_pad), 0, 500);
+	 
+	 //init shoot
+	 shoot = new Shoot(BitmapFactory.decodeResource(getResources(), R.drawable.button), 1400, 500);
 	 
 	 thread = new GameThread(getHolder(), this);//create thread
 	 setFocusable(true);
@@ -47,11 +51,17 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 
  @Override
 	 public boolean onTouchEvent(MotionEvent event) {
+	 
+	 	int quad = 0;
+	 	boolean touchedQuad = false;
+	 	quad = dpad.handleActionDown((int)event.getX(), (int)event.getY());
 		 if (event.getAction() == MotionEvent.ACTION_DOWN)
 		 {
 			 Log.d(TAG, "Coords: x=" + event.getX() + ",y=" + event.getY());
-			 int quad = dpad.handleActionDown((int)event.getX(), (int)event.getY());
-			 archer.handleActionDown(quad);
+			 //quad = dpad.handleActionDown((int)event.getX(), (int)event.getY());
+			 if (quad > 0)
+				 dpad.setTouched(true);
+			 //archer.handleActionDown(quad);
 		 }
 		 if (event.getAction() == MotionEvent.ACTION_UP) {
 			   // touch was released
@@ -63,11 +73,17 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 		 
 		  return true;
 	 }
+ public void updateArcher()
+ {
+	 if (dpad.isTouched())
+		 archer.handleActionDown(dpad.getPrevQuad());
+ }
 
  @Override
  protected void onDraw(Canvas canvas) {
 	 canvas.drawColor(Color.BLACK);
 	 archer.draw(canvas);
 	 dpad.draw(canvas);
+	 shoot.draw(canvas);
  }
 }
