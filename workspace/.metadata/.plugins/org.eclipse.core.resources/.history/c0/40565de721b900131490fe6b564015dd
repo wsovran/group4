@@ -1,0 +1,14 @@
+import android.app.Application;
+
+
+public class Globals extends Application {
+	private int money;
+	private int score;
+	private int level;
+	private int archerDamage;
+	private int allySpawnRate;
+	private int allyDamage;
+	private int allyHealth;
+	
+
+}

@@ -1,0 +1,5 @@
+package com.example.archer;
+
+public class Ally extends Soldier {
+
+}

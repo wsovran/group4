@@ -2,6 +2,7 @@ package com.example.archer;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 public class DPad {
 	private Bitmap bitmap; // the actual bitmap
@@ -48,7 +49,9 @@ public class DPad {
 	 }
 
 	 public void draw(Canvas canvas) {
-	  canvas.drawBitmap(bitmap, x, y, null);
+		 Paint paint = new Paint();
+		 paint.setAlpha(100);
+		 canvas.drawBitmap(bitmap, x, y, paint);
 	 }
 	 public int handleActionDown(int eventX, int eventY)
 	 {

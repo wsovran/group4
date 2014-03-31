@@ -1,10 +1,13 @@
 package com.example.archer;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -17,13 +20,22 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	private DPad dpad;
 	private Shoot shoot;
 	private static final String TAG = MainGamePanel.class.getSimpleName();
+	private ArrayList<Arrow> arrows = new ArrayList<Arrow>();
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	private ArrayList<Ally> allies = new ArrayList<Ally>();
+	public GameActivity context;
+	private Globals global;
+	private int score;
+	private int money;
 
  public MainGamePanel(Context context) {
 	 super(context);
+	 
+	 this.context = (GameActivity) context;
 	 getHolder().addCallback(this);
 	 
 	 //init actors
-	 archer = new Archer(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 50, 50);
+	 archer = new Archer(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 50, 200);
 	 
 	 //init dpad
 	 dpad = new DPad(BitmapFactory.decodeResource(getResources(), R.drawable.d_pad), 0, 500);
@@ -33,6 +45,9 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 
 	 thread = new GameThread(getHolder(), this);//create thread
 	 setFocusable(true);
+	 global = (Globals)((GameActivity)context).getApplication();
+	 money = global.getMoney();
+	 
  }
 
  @Override
@@ -57,10 +72,11 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 	quad = dpad.handleActionDown((int)event.getX(), (int)event.getY());
 		 if (event.getAction() == MotionEvent.ACTION_DOWN)
 		 {
-			 Log.d(TAG, "Coords: x=" + event.getX() + ",y=" + event.getY());
+			 //Log.d(TAG, "Coords: x=" + event.getX(0) + ",y=" + event.getY(0));
 			 //quad = dpad.handleActionDown((int)event.getX(), (int)event.getY());
 			 if (quad > 0)
 				 dpad.setTouched(true);
+			 shoot.checkBounds((int)event.getX(), (int)event.getY());
 			 //archer.handleActionDown(quad);
 		 }
 		 if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -68,6 +84,13 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 			 if (dpad.isTouched())
 			 {
 				 dpad.setTouched(false);
+			 }
+			 if(shoot.isTouched() && arrows.size()<5)
+			 {
+				 Arrow arrow = new Arrow(BitmapFactory.decodeResource(getResources(), R.drawable.arrow), archer.getX(), archer.getY(),archer.getAngle(),50);
+				 shoot.handleActionUp(arrow, archer.getAngle());
+				 shoot.setTouched(false);
+				 arrows.add(arrow);
 			 }
 		 }
 		 
@@ -78,12 +101,130 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 if (dpad.isTouched())
 		 archer.handleActionDown(dpad.getPrevQuad());
  }
+ public void updateShoot()
+ {
+	 if(shoot.isTouched())
+	 {
+		 shoot.handleActionDown();
+	 }
+ }
+ public void updateEnemy()
+ {
+	 enemies.add(new Enemy(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 100, -1, 25, 1900, 10));
+ }
+ public void updateAlly()
+ {
+	 allies.add(new Ally(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 100, 1, 25, 20, 15));
+ }
+ public void scoreDeath(Soldier enemy)
+ {
+	 global.addMoney(5);
+	 global.addScore(100);
+ }
 
- @Override
- protected void onDraw(Canvas canvas) {
-	 canvas.drawColor(Color.BLACK);
+ protected void onDraw(Canvas canvas, int tick) {
+	 canvas.drawColor(Color.BLACK); 
+	 Paint paint = new Paint();
+	 paint.setColor(Color.WHITE);
+	 paint.setTextSize(36);
+	 canvas.drawText(""+archer.getAngle(), 50, 50, paint);
+	 canvas.drawText(""+shoot.getPower(), 150, 50, paint);
 	 archer.draw(canvas);
 	 dpad.draw(canvas);
 	 shoot.draw(canvas);
+	 for(int i=0;i< enemies.size(); i++)
+	 {
+		 boolean collide = false;
+		 if(enemies.get(i).isDead())
+		 {
+			 scoreDeath(enemies.get(i));
+			 enemies.remove(i--);
+			 continue;
+		 }
+		 for(int j=0;j< allies.size(); j++)
+		 {
+			 if(enemies.get(i).checkCollision(allies.get(j).getX(),allies.get(j).getWidth(),allies.get(j).getY(),allies.get(j).getHeight()))
+			 {
+				 enemies.get(i).attack(tick, allies.get(j));
+				 collide = true;
+				 break;
+			 }
+		 }
+		 if(!collide)
+		 {
+			 enemies.get(i).draw(canvas);
+		 }
+		 else
+		 {
+			 enemies.get(i).drawStill(canvas);
+		 }
+		 if(enemies.get(i).winCon(true)){
+			 //TO-DO go to shop
+			 context.sendMain(this);
+			 System.out.println("this worked");
+			 thread.setShouldContinue(false);
+			 return;
+		 }
+	 }
+	 for(int i=0;i< allies.size(); i++)
+	 {
+		 boolean collide = false;
+		 if(allies.get(i).isDead())
+		 {
+			 allies.remove(i--);
+			 continue;
+		 }
+		 for(int j=0;j< enemies.size(); j++)
+		 {
+			 if(allies.get(i).checkCollision(enemies.get(j).getX(),enemies.get(j).getWidth(), enemies.get(j).getY(), enemies.get(j).getHeight()))
+			 {
+				 
+				 collide = true;
+				 allies.get(i).attack(tick, enemies.get(j));
+				 //System.out.println("Collide");
+				 break;
+			 }
+		 }
+		 if(!collide)
+		 {
+			 allies.get(i).draw(canvas);
+		 }
+		 else
+			 allies.get(i).drawStill(canvas);
+		 if(allies.get(i).winCon(false)){
+			 //TO-DO go to shop
+			 context.sendShop(this);
+			 System.out.println("this worked");
+			 thread.setShouldContinue(false);
+			 return;
+		 }
+	 }
+	 for(int i=0;i< arrows.size(); i++)
+	 {
+		 if(!arrows.get(i).draw(canvas))
+		 {
+			 arrows.remove(i--);
+			 continue;
+		 }
+		 for(int j=0;j< enemies.size(); j++)
+		 {
+			 if(arrows.get(i).checkCollision(enemies.get(j).getX(),enemies.get(j).getWidth(), enemies.get(j).getY(), enemies.get(j).getHeight()))
+			 {
+				 //enemies.get(j).setHealth(value);
+				 arrows.get(i).attack(enemies.get(j));
+				 if(enemies.get(j).isDead())
+				 {
+					 scoreDeath(enemies.get(j));
+					 enemies.remove(j--);
+				 }
+					 
+				 arrows.remove(i--);
+				 break;
+				 
+			 }
+		 }
+	 }
+	 
  }
+ 
 }

@@ -1,0 +1,10 @@
+package com.example.archer;
+
+public class Solider {
+	private int health;
+	private int moveSpeed;
+	private int damage;
+	
+	
+
+}

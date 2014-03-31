@@ -1,0 +1,12 @@
+package com.example.archer;
+
+import android.graphics.Bitmap;
+
+public class Ally extends Soldier {
+
+	public Ally(Bitmap bitmap, int health, int moveSpeed, int damage, int x) {
+		super(bitmap, health, moveSpeed, damage, x);
+		// TODO Auto-generated constructor stub
+	}
+
+}

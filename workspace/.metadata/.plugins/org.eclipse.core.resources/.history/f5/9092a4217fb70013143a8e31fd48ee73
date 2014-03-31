@@ -1,0 +1,47 @@
+package com.example.archer;
+
+public class Soilder {
+	private int health;
+	private int moveSpeed;
+	private int damage;
+	private int x;
+	private int attackSpeed;
+	
+	public Soilder
+	
+	
+	public int getHealth()
+	{
+		return this.health;
+	}
+	public void setHealth(int value)
+	{
+		this.health = value;
+	}
+	public int getMoveSpeed()
+	{
+		return this.moveSpeed;
+	}
+	public void setMoveSpeed(int value)
+	{
+		this.moveSpeed = value;
+	}
+	public int getDamage()
+	{
+		return this.damage;
+	}
+	public void setDamage(int value)
+	{
+		this.health = value;
+	}
+	public int getX()
+	{
+		return this.x;
+	}
+	public void setX(int value)
+	{
+		this.x = value;
+	}
+	
+
+}

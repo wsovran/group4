@@ -18,5 +18,17 @@
     <string name="title_activity_high_score">HighScoreActivity</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_new_game">NewGameActivity</string>
+    <string name="title_activity_shop">ShopActivity</string>
+    <string name="Archer_Text_view">Archer</string>
+    <string name="Soilders_text_view">Soldiers</string>
+    <string name="quit">Quit</string>
+    <string name="save">Save</string>
+    <string name="btn_damage">Damge Increase</string>
+    <string name="Arrows_btn">Double Arrows</string>
+    <string name="btn_arrow">Piercing Arrows</string>
+    <string name="btn_speed">Move Speed</string>
+    <string name="btn_health">Health</string>
+    <string name="btn_spawn">Spwan Rate</string>
+    <string name="Money">Money:</string>
 
 </resources>

@@ -1,0 +1,28 @@
+package com.example.archer;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.util.MonthDisplayHelper;
+import android.view.Menu;
+import android.widget.TextView;
+
+public class ShopActivity extends Activity {
+
+	private Globals global = ((Globals)this.getApplication());
+	private int money = global.getMoney();
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_shop);
+		TextView moneyView = (TextView)findViewById(R.id.moneyDisplay);
+		moneyView.setText()
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.shop, menu);
+		return true;
+	}
+
+}

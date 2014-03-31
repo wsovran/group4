@@ -1,0 +1,45 @@
+package com.example.archer;
+
+public class Solider {
+	private int health;
+	private int moveSpeed;
+	private int damage;
+	private int x;
+	private int attackSpeed;
+	
+	
+	public int getHealth()
+	{
+		return this.health;
+	}
+	public void setHealth(int value)
+	{
+		health = value;
+	}
+	public int getMoveSpeed()
+	{
+		return this.moveSpeed;
+	}
+	public void setMoveSpeed(int value)
+	{
+		this.moveSpeed = value;
+	}
+	public int getHealth()
+	{
+		return this.health;
+	}
+	public void setHealth(int value)
+	{
+		health = value;
+	}
+	public int getHealth()
+	{
+		return this.health;
+	}
+	public void setHealth(int value)
+	{
+		health = value;
+	}
+	
+
+}

@@ -2,8 +2,10 @@ package com.example.archer;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.view.Menu;
+import android.view.View;
 
 public class GameActivity extends Activity{
 
@@ -14,6 +16,17 @@ public class GameActivity extends Activity{
 		setContentView(new MainGamePanel(this));//set the content view to the Game Controller
 
 	}
+	
+	public void sendMain(View view)
+    {
+    	Intent nextScreen = new Intent(getApplicationContext(),MainActivity.class);
+    	startActivity(nextScreen);
+    }
+	public void sendShop(View view)
+    {
+    	Intent nextScreen = new Intent(getApplicationContext(),ShopActivity.class);
+    	startActivity(nextScreen);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

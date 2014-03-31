@@ -8,12 +8,14 @@ public class Archer {
 	 private Bitmap bitmap; // the actual bitmap
 	 private int x;   // the X coordinate
 	 private int y;   // the Y coordinate
+	 private int angle; //shot angle
 	 private boolean touched;//state
 	
 	 public Archer(Bitmap bitmap, int x, int y) {
 	  this.bitmap = bitmap;
 	  this.x = x;
 	  this.y = y;
+	  this.angle = 0;
 	 }
 	
 	 public Bitmap getBitmap() {
@@ -26,13 +28,29 @@ public class Archer {
 	  return x;
 	 }
 	 public void setX(int x) {
-	  this.x = x;
+		 if (x > 20 && x < 1900)
+			 this.x = x;
 	 }
 	 public int getY() {
 	  return y;
 	 }
 	 public void setY(int y) {
 	  this.y = y;
+	 }
+	 public int getWidth()
+	 {
+		 return bitmap.getWidth();
+	 }
+	 public int getHeight()
+	 {
+		 return bitmap.getHeight();
+	 }
+	 public void setAngle(int angle){
+	 	if (angle < 91 && angle >=0)
+		 	this.angle = angle;
+	 }
+	 public int getAngle(){
+		 return angle;
 	 }
 	 public boolean isTouched() {
 		  return touched;
@@ -47,38 +65,43 @@ public class Archer {
 	 }
 
 	 public void handleActionDown(int quad) {
-		 System.out.println(quad);
 		 switch(quad)
 		 {
 		 	case 1:
+		 		//if (x>20)
 		 		setX(x-5);
-		 		setY(y-5);
+		 		setAngle(angle+1);
 		 		break;
 		 	case 2:
-		 		setY(y-5);
+		 		setAngle(angle+1);
 		 		break;
 		 	case 3:
+		 		//if (x<1900)
 		 		setX(x+5);
-		 		setY(y-5);
+		 		setAngle(angle+1);
 		 		break;
 		 	case 4:
+		 		//if (x>20)
 		 		setX(x-5);
 		 		break;
 		 	case 5:
 		 		break;
 		 	case 6:
+		 		//if (x<1900)
 		 		setX(x+5);
 		 		break;
 		 	case 7:
+		 		//if (x>20)
 		 		setX(x-5);
-		 		setY(y+5);
+		 		setAngle(angle-1);
 		 		break;
 		 	case 8:
-		 		setY(y+5);
+		 		setAngle(angle-1);
 		 		break;
 		 	case 9:
+		 		//if (x<1900)
 		 		setX(x+5);
-		 		setY(y+5);
+		 		setAngle(angle-1);
 		 		break;
 	 		default:
 	 			break;
