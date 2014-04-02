@@ -10,7 +10,12 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="android.graphics.Matrix"/>
-<fullyQualifiedTypeName name="android.graphics.Bitmap"/>
 <fullyQualifiedTypeName name="android.graphics.Canvas"/>
 <fullyQualifiedTypeName name="com.example.archer.Enemy"/>
+<fullyQualifiedTypeName name="android.util.MonthDisplayHelper"/>
+<fullyQualifiedTypeName name="com.example.archer.R.id"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="com.example.archer.Soldier"/>
+<fullyQualifiedTypeName name="android.graphics.Bitmap"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,87 @@
+package com.example.archer;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.util.MonthDisplayHelper;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class ShopActivity extends Activity {
+
+	private Globals global;
+	private int money;
+	private TextView moneyView;
+	private TextView archerCostView1;
+	private TextView archerCostView2;
+	private TextView archerCostView3;
+	private TextView soldierCostView1;
+	private TextView soldierCostView2;
+	private TextView soldierCostView3;
+	private Button archerBtn1;
+	private Button archerBtn2;
+	private Button archerBtn3;
+	private Button soldierBtn1;
+	private Button soldierBtn2;
+	private Button soldierBtn3;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_shop);
+		
+		global = ((Globals)this.getApplication());
+		money = global.getMoney();
+		
+		moneyView = (TextView)findViewById(R.id.moneyDisplay);
+		moneyView.setText(money+"");
+		
+		archerCostView1 = (TextView)findViewById(R.id.archerBtn1View);
+		archerCostView1.setText(global.getCost(1));
+		archerCostView2 = (TextView)findViewById(R.id.archerBtn2View);
+		archerCostView3 = (TextView)findViewById(R.id.archerBtn3View);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.shop, menu);
+		return true;
+	}
+	public void btnArcher1_onClick(View view)
+	{
+		
+	}
+	public void btnArcher2_onClick(View view)
+	{
+		
+	}
+	public void btnArcher3_onClick(View view)
+	{
+		
+	}
+	public void btnSoldier1_onClick(View view)
+	{
+		
+	}
+	public void btnSoldier2_onClick(View view)
+	{
+		
+	}
+	public void btnSoldier3_onClick(View view)
+	{
+		
+	}
+	
+	
+	public void updateFunds(int value)
+	{
+		if(global.subMoney(value))
+		{
+			moneyView.setText(money+"");
+		}
+	}
+
+}

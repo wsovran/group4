@@ -10,38 +10,38 @@
     tools:context=".ShopActivity" >
 
     <Button
-        android:id="@+id/Button02"
+        android:id="@+id/btn5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Button04"
-        android:layout_alignRight="@+id/Button04"
-        android:layout_below="@+id/Button04"
+        android:layout_alignLeft="@+id/btn4"
+        android:layout_alignRight="@+id/btn4"
+        android:layout_below="@+id/btn4"
         android:text="@string/btn_spawn" />
 
     <Button
-        android:id="@+id/Button03"
+        android:id="@+id/btn6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Button02"
-        android:layout_alignRight="@+id/Button02"
-        android:layout_below="@+id/Button02"
+        android:layout_alignLeft="@+id/btn5"
+        android:layout_alignRight="@+id/btn5"
+        android:layout_below="@+id/btn5"
         android:text="@string/btn_health" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button4"
-        android:layout_alignLeft="@+id/button4"
+        android:layout_above="@+id/archerButton1"
+        android:layout_alignLeft="@+id/archerButton1"
         android:text="@string/Archer_Text_view" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Button04"
-        android:layout_alignLeft="@+id/Button04"
-        android:layout_alignRight="@+id/Button04"
+        android:layout_above="@+id/btn4"
+        android:layout_alignLeft="@+id/btn4"
+        android:layout_alignRight="@+id/btn4"
         android:text="@string/Soilders_text_view" />
 
     <Button
@@ -54,7 +54,7 @@
         android:text="@string/quit" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -65,63 +65,139 @@
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button6"
-        android:layout_alignBottom="@+id/button6"
+        android:layout_alignBaseline="@+id/continueButton"
+        android:layout_alignBottom="@+id/continueButton"
         android:layout_alignLeft="@+id/button5"
         android:text="@string/save" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/bttn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button7"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_alignRight="@+id/button4"
+        android:layout_alignLeft="@+id/archerButton1"
+        android:layout_alignRight="@+id/archerButton1"
         android:layout_marginBottom="86dp"
         android:text="@string/Arrows_btn" />
 
     <Button
-        android:id="@+id/Button04"
+        android:id="@+id/btn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="56dp"
-        android:layout_toRightOf="@+id/button4"
+        android:layout_toRightOf="@+id/archerButton1"
         android:text="@string/btn_damage" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/archerButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/bttn2"
         android:layout_marginLeft="19dp"
         android:layout_toRightOf="@+id/button5"
+        android:onClick="btnArcher1_onClick"
         android:text="@string/btn_damage" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bttn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Button03"
-        android:layout_alignBottom="@+id/Button03"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_toLeftOf="@+id/Button04"
+        android:layout_alignBaseline="@+id/btn6"
+        android:layout_alignBottom="@+id/btn6"
+        android:layout_alignLeft="@+id/bttn2"
+        android:layout_toLeftOf="@+id/btn4"
         android:text="@string/btn_arrow" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button6"
-        android:layout_centerHorizontal="true"
+        android:layout_alignBaseline="@+id/button7"
+        android:layout_alignBottom="@+id/button7"
+        android:layout_alignLeft="@+id/bttn3"
         android:text="@string/Money" />
 
     <TextView
         android:id="@+id/moneyDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignTop="@+id/button6"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/scoreView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/continueButton"
+        android:layout_alignBottom="@+id/continueButton"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/continueButton"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/scoreView"
+        android:layout_alignBottom="@+id/scoreView"
+        android:layout_toLeftOf="@+id/scoreView"
+        android:text="@string/lbl_score" />
+
+    <TextView
+        android:id="@+id/archerBtn1View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/archerButton1"
+        android:layout_alignBottom="@+id/archerButton1"
+        android:layout_toLeftOf="@+id/textView1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/archerBtn2View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bttn2"
+        android:layout_alignBottom="@+id/bttn2"
+        android:layout_alignRight="@+id/archerBtn1View"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/archerBtn3View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bttn3"
+        android:layout_alignBottom="@+id/bttn3"
+        android:layout_toLeftOf="@+id/bttn3"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/soldierBtn2View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn5"
+        android:layout_alignBottom="@+id/btn5"
+        android:layout_toRightOf="@+id/bttn2"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/soldierBtn3View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn6"
+        android:layout_alignBottom="@+id/btn6"
+        android:layout_alignLeft="@+id/soldierBtn2View"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/soldierBtn1View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn4"
+        android:layout_alignBottom="@+id/btn4"
+        android:layout_alignLeft="@+id/soldierBtn2View"
         android:text="TextView" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -35,7 +36,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 getHolder().addCallback(this);
 	 
 	 //init actors
-	 archer = new Archer(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 50, 200);
+	 archer = new Archer(new Bitmap[]{BitmapFactory.decodeResource(getResources(), R.drawable.archer_right1),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right3),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2)}, 50, 300);
 	 
 	 //init dpad
 	 dpad = new DPad(BitmapFactory.decodeResource(getResources(), R.drawable.d_pad), 0, 500);
@@ -47,6 +48,8 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 setFocusable(true);
 	 global = (Globals)((GameActivity)context).getApplication();
 	 money = global.getMoney();
+	
+	 
 	 
  }
 
@@ -129,7 +132,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 paint.setTextSize(36);
 	 canvas.drawText(""+archer.getAngle(), 50, 50, paint);
 	 canvas.drawText(""+shoot.getPower(), 150, 50, paint);
-	 archer.draw(canvas);
+	 if(archer.isMoving())
+		 archer.draw(canvas);
+	 else
+		 archer.drawStill(canvas);
 	 dpad.draw(canvas);
 	 shoot.draw(canvas);
 	 for(int i=0;i< enemies.size(); i++)

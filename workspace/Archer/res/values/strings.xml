@@ -30,5 +30,6 @@
     <string name="btn_health">Health</string>
     <string name="btn_spawn">Spwan Rate</string>
     <string name="Money">Money:</string>
+    <string name="lbl_score">Score:</string>
 
 </resources>

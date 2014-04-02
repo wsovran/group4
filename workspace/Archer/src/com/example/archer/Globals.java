@@ -12,18 +12,27 @@ public class Globals extends Application {
 	private int allyHealth;
 	private boolean doubleShot;
 	private boolean pierceShot;
+	private int archerDamageLevel;
+	private int allySpawnRateLevel;
+	private int allyDamageLevel;
+	private int allyHealthLevel;
+	
 	
 	public Globals()
 	{
 		money = 0;
 		score = 0;
 		level = 1;
-		archerDamage = 50;
+		archerDamage = 25;
 		allyDamage = 25;
 		allySpawnRate = 500;
 		allyHealth = 100;
 		doubleShot = false;
 		pierceShot = false;
+		archerDamageLevel = 1;
+		allyDamageLevel = 1;
+		allySpawnRateLevel = 1;
+		allyHealthLevel =1;
 	}
 	public int getMoney()
 	{
@@ -81,6 +90,52 @@ public class Globals extends Application {
 	public int getSpawnRate() {
 		
 		return allySpawnRate;
+	}
+	public int getArcherDamage()
+	{
+		return (archerDamageLevel *25) + archerDamage;
+	}
+	public void incArcherDamgeLevel()
+	{
+		archerDamageLevel++;
+	}
+	public void setArcherDamageLevel(int value)
+	{
+		archerDamageLevel = value;
+	}
+	
+	public int getCost(int button)
+	{
+		switch(button)
+		{
+			case 1:
+				return (archerDamageLevel * 25) + 25;
+			case 2:
+				return 2000;
+			case 3:
+				return 5000;
+			case 4:
+				return (allyDamageLevel * 25);
+			case 5:
+				return (allySpawnRateLevel * 50);
+			case 6:
+				return (allyHealthLevel * 100);
+			default:
+				return -1;
+				
+		}
+	}
+	public void setDoubleShot(boolean value)
+	{
+		doubleShot = value;
+	}
+	public void activateDoubleShot()
+	{
+		doubleShot = true;
+	}
+	public boolean isDoubleShot()
+	{
+		return doubleShot;
 	}
 
 }

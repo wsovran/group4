@@ -9,7 +9,7 @@
     tools:context=".OptionsActivity" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/bttn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -21,16 +21,16 @@
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/bttn3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
         android:text="@string/SoundControl" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bttn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button1"
+        android:layout_alignTop="@+id/bttn2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:text="@string/ResetHighScore" />
