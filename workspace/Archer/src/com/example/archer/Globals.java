@@ -22,10 +22,10 @@ public class Globals extends Application {
 	{
 		money = 0;
 		score = 0;
-		level = 1;
-		archerDamage = 25;
+		level = 0;
+		archerDamage = 10;
 		allyDamage = 25;
-		allySpawnRate = 500;
+		allySpawnRate = 450;
 		allyHealth = 100;
 		doubleShot = false;
 		pierceShot = false;
@@ -136,6 +136,65 @@ public class Globals extends Application {
 	public boolean isDoubleShot()
 	{
 		return doubleShot;
+	}
+	public void activatePiercingShot()
+	{
+		pierceShot = true;
+	}
+	public boolean isPiercingShot()
+	{
+		return pierceShot;
+	}
+	public void incSoldierDamageLevel() {
+		allyDamageLevel++;
+		
+	}
+	public void setSoldierDamageLevel(int value)
+	{
+		allyDamageLevel = value;
+	}
+	public int getSoldierDamageLevel()
+	{
+		return allyDamageLevel;
+	}
+	public int getSoldierDamage()
+	{
+		return (allyDamageLevel *10) + allyDamage;
+	}
+	public void setSoldierSpawnRateLevel(int value){
+		allySpawnRateLevel = value;
+	}
+	public int getSoldierSpawnRateLevel()
+	{
+		return allySpawnRateLevel;
+	}
+	public void incSoldierSpawnRateLevel()
+	{
+		allySpawnRateLevel++;
+	}
+	public int getSoldierHealth()
+	{
+		return (allyHealthLevel *20)+100;
+	}
+	public int getSoldierHealthLevel()
+	{
+		return allyHealthLevel;
+	}
+	public void setSoldierHealthLevel(int value)
+	{
+		allyHealthLevel = value;
+	}
+	public void incSoldierHealthLevel()
+	{
+		allyHealthLevel++;
+	}
+	public int getEnemyHealth() {
+		
+		return (level * 5) +100;
+	}
+	public int getEnemyDamage() {
+		// TODO Auto-generated method stub
+		return (level * 4) + 26;
 	}
 
 }

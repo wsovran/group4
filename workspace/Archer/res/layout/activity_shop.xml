@@ -16,6 +16,7 @@
         android:layout_alignLeft="@+id/btn4"
         android:layout_alignRight="@+id/btn4"
         android:layout_below="@+id/btn4"
+        android:onClick="btnSoldier2_onClick"
         android:text="@string/btn_spawn" />
 
     <Button
@@ -25,14 +26,15 @@
         android:layout_alignLeft="@+id/btn5"
         android:layout_alignRight="@+id/btn5"
         android:layout_below="@+id/btn5"
+        android:onClick="btnSoldier3_onClick"
         android:text="@string/btn_health" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/archerButton1"
-        android:layout_alignLeft="@+id/archerButton1"
+        android:layout_above="@+id/btn1"
+        android:layout_alignLeft="@+id/btn1"
         android:text="@string/Archer_Text_view" />
 
     <TextView
@@ -59,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:onClick="sendGame"
         android:text="@string/ContinueGame" />
 
     <Button
@@ -71,13 +74,14 @@
         android:text="@string/save" />
 
     <Button
-        android:id="@+id/bttn2"
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button7"
-        android:layout_alignLeft="@+id/archerButton1"
-        android:layout_alignRight="@+id/archerButton1"
+        android:layout_alignLeft="@+id/btn1"
+        android:layout_alignRight="@+id/btn1"
         android:layout_marginBottom="86dp"
+        android:onClick="btnArcher2_onClick"
         android:text="@string/Arrows_btn" />
 
     <Button
@@ -86,27 +90,29 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="56dp"
-        android:layout_toRightOf="@+id/archerButton1"
+        android:layout_toRightOf="@+id/btn1"
+        android:onClick="btnSoldier1_onClick"
         android:text="@string/btn_damage" />
 
     <Button
-        android:id="@+id/archerButton1"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bttn2"
+        android:layout_above="@+id/btn2"
         android:layout_marginLeft="19dp"
         android:layout_toRightOf="@+id/button5"
         android:onClick="btnArcher1_onClick"
         android:text="@string/btn_damage" />
 
     <Button
-        android:id="@+id/bttn3"
+        android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btn6"
         android:layout_alignBottom="@+id/btn6"
-        android:layout_alignLeft="@+id/bttn2"
+        android:layout_alignLeft="@+id/btn2"
         android:layout_toLeftOf="@+id/btn4"
+        android:onClick="btnArcher3_onClick"
         android:text="@string/btn_arrow" />
 
     <TextView
@@ -115,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button7"
         android:layout_alignBottom="@+id/button7"
-        android:layout_alignLeft="@+id/bttn3"
+        android:layout_alignLeft="@+id/btn3"
         android:text="@string/Money" />
 
     <TextView
@@ -150,8 +156,8 @@
         android:id="@+id/archerBtn1View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/archerButton1"
-        android:layout_alignBottom="@+id/archerButton1"
+        android:layout_alignBaseline="@+id/btn1"
+        android:layout_alignBottom="@+id/btn1"
         android:layout_toLeftOf="@+id/textView1"
         android:text="TextView" />
 
@@ -159,8 +165,8 @@
         android:id="@+id/archerBtn2View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bttn2"
-        android:layout_alignBottom="@+id/bttn2"
+        android:layout_alignBaseline="@+id/btn2"
+        android:layout_alignBottom="@+id/btn2"
         android:layout_alignRight="@+id/archerBtn1View"
         android:text="TextView" />
 
@@ -168,9 +174,9 @@
         android:id="@+id/archerBtn3View"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bttn3"
-        android:layout_alignBottom="@+id/bttn3"
-        android:layout_toLeftOf="@+id/bttn3"
+        android:layout_alignBaseline="@+id/btn3"
+        android:layout_alignBottom="@+id/btn3"
+        android:layout_toLeftOf="@+id/btn3"
         android:text="TextView" />
 
     <TextView
@@ -179,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btn5"
         android:layout_alignBottom="@+id/btn5"
-        android:layout_toRightOf="@+id/bttn2"
+        android:layout_toRightOf="@+id/btn2"
         android:text="TextView" />
 
     <TextView

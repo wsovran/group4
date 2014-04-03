@@ -1,0 +1,116 @@
+package com.example.archer;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.util.MonthDisplayHelper;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class ShopActivity extends Activity {
+
+	private Globals global;
+	private int money;
+	private TextView scoreView;
+	private TextView moneyView;
+	private TextView archerCostView1;
+	private TextView archerCostView2;
+	private TextView archerCostView3;
+	private TextView soldierCostView1;
+	private TextView soldierCostView2;
+	private TextView soldierCostView3;
+	private Button archerBtn1;
+	private Button archerBtn2;
+	private Button archerBtn3;
+	private Button soldierBtn1;
+	private Button soldierBtn2;
+	private Button soldierBtn3;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_shop);
+		
+		global = ((Globals)this.getApplication());
+		money = global.getMoney();
+		
+		moneyView = (TextView)findViewById(R.id.moneyDisplay);
+		moneyView.setText(money+"");
+		
+		scoreView = (TextView)findViewById(R.id.scoreView);
+		scoreView.setText(global.getScore()+"");
+		
+		archerCostView1 = (TextView)findViewById(R.id.archerBtn1View);
+		archerCostView1.setText(global.getCost(1)+"");
+		archerCostView2 = (TextView)findViewById(R.id.archerBtn2View);
+		archerCostView2.setText(global.getCost(2)+"");
+		archerCostView3 = (TextView)findViewById(R.id.archerBtn3View);
+		archerCostView3.setText(global.getCost(3)+"");
+		
+		soldierCostView1 = (TextView)findViewById(R.id.soldierBtn1View);
+		soldierCostView1.setText(global.getCost(4)+"");
+		soldierCostView2 = (TextView)findViewById(R.id.soldierBtn2View);
+		soldierCostView2.setText(global.getCost(5)+"");
+		soldierCostView3 = (TextView)findViewById(R.id.soldierBtn3View);
+		soldierCostView3.setText(global.getCost(6)+"");
+		
+		archerBtn1 = (Button)findViewById(R.id.btn1);
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.shop, menu);
+		return true;
+	}
+	public void btnArcher1_onClick(View view)
+	{
+		if(updateFunds(global.getCost(1)))
+		{
+			global.incArcherDamgeLevel();
+			archerCostView1.setText(global.getCost(1)+"");
+		}
+	}
+	public void btnArcher2_onClick(View view)
+	{
+		if(updateFunds(global.getCost(1)))
+		{
+			global.activateDoubleShot();
+			archer
+		}
+	}
+	public void btnArcher3_onClick(View view)
+	{
+		if(updateFunds(global.getCost(1)))
+		{
+			
+		}
+	}
+	public void btnSoldier1_onClick(View view)
+	{
+		
+	}
+	public void btnSoldier2_onClick(View view)
+	{
+		
+	}
+	public void btnSoldier3_onClick(View view)
+	{
+		
+	}
+	
+	
+	public boolean updateFunds(int value)
+	{
+		if(global.subMoney(value))
+		{
+			moneyView.setText(money+"");
+			return true;
+		}
+		return false;
+	}
+
+}

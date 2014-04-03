@@ -9,7 +9,7 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/bttn3"
+        android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,10 +18,10 @@
         android:text="@string/ContinueGame" />
 
     <Button
-        android:id="@+id/bttn2"
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bttn3"
+        android:layout_below="@+id/btn3"
         android:layout_centerHorizontal="true"
         android:onClick="sendNewGame"
         android:text="@string/NewGame" />
@@ -30,13 +30,13 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bttn2"
+        android:layout_below="@+id/btn2"
         android:layout_centerHorizontal="true"
         android:onClick="sendHighScores"
         android:text="@string/HighScores" />
 
     <Button
-        android:id="@+id/archerButton1"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button3"
@@ -47,7 +47,7 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/archerButton1"
+        android:layout_below="@+id/btn1"
         android:layout_centerHorizontal="true"
         android:onClick="sendTutorial"
         android:text="@string/Tutorial" />

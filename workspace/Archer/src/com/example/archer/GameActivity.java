@@ -1,8 +1,11 @@
 package com.example.archer;
 
+import java.io.IOException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.Menu;
 import android.view.View;
@@ -14,7 +17,7 @@ public class GameActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_game);
 		setContentView(new MainGamePanel(this));//set the content view to the Game Controller
-
+	
 	}
 	
 	public void sendMain(View view)

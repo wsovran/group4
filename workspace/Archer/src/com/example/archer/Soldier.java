@@ -9,10 +9,11 @@ public class Soldier {
 	private int damage;
 	private int x;
 	private int attackSpeed;
-	private Bitmap bitmap;
+	private Bitmap bitmap[];
 	private int y;
+	private int currentBitmap;
 	
-	public Soldier(Bitmap bitmap, int health, int moveSpeed, int damage, int x, int attackspeed)
+	public Soldier(Bitmap bitmap[], int health, int moveSpeed, int damage, int x, int attackspeed)
 	{
 		y = 50; 
 		this.bitmap=bitmap;
@@ -21,6 +22,7 @@ public class Soldier {
 		this.damage=damage;
 		this.x=x;
 		this.attackSpeed = attackspeed;
+		currentBitmap = 0;
 	}
 	
 	
@@ -62,32 +64,34 @@ public class Soldier {
 	}
 	public int getWidth()
 	 {
-		 return bitmap.getWidth();
+		 return bitmap[currentBitmap%bitmap.length].getWidth();
 	 }
 	 public int getHeight()
 	 {
-		 return bitmap.getHeight();
+		 return bitmap[currentBitmap%bitmap.length].getHeight();
 	 }
 	public void setY(int value)
 	{
 		this.y = value;
 	}
-	public Bitmap getBitmap()
+	public Bitmap getBitmap(int index)
 	{
-		  return bitmap;
+		  return bitmap[index];
 	 }
 	 public void setBitmap(Bitmap bitmap)
 	 {
-		  this.bitmap = bitmap;
+		  this.bitmap[currentBitmap] = bitmap;
 	 }
 	public void draw(Canvas canvas)
 	{
 		x+=this.moveSpeed;
-		canvas.drawBitmap(bitmap,x,y, null);
+		canvas.drawBitmap(getBitmap((currentBitmap % 24)/6),x,y, null);
+		currentBitmap++;
 	}
 	public void drawStill(Canvas canvas)
 	{
-		canvas.drawBitmap(bitmap,x,y, null);
+		currentBitmap = 0;
+		canvas.drawBitmap(getBitmap((currentBitmap % 20)/5),x,y, null);
 	}
 	public boolean winCon (boolean direction)
 	{
@@ -96,9 +100,9 @@ public class Soldier {
 	
 	public boolean checkCollision(int x, int xMax, int y, int yMax)
 	{
-		if(x>= this.x && x<=bitmap.getWidth()+this.x)
+		if(x>= this.x && x<=getWidth()+this.x)
 			return true;
-		if((xMax+x)>= this.x && (xMax+x)<=bitmap.getWidth()+this.x)
+		if((xMax+x)>= this.x && (xMax+x)<=getWidth()+this.x)
 			return true;
 		return false;
 	}

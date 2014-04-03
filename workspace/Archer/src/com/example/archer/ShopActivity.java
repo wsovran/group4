@@ -2,6 +2,7 @@ package com.example.archer;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.MonthDisplayHelper;
 import android.view.Menu;
 import android.view.View;
@@ -56,7 +57,20 @@ public class ShopActivity extends Activity {
 		soldierCostView3 = (TextView)findViewById(R.id.soldierBtn3View);
 		soldierCostView3.setText(global.getCost(6)+"");
 		
-		archerBtn1 = (Button)findViewById(R.id.);
+		archerBtn1 = (Button)findViewById(R.id.btn1);
+		setButtonActive(archerBtn1, global.getCost(1));
+		archerBtn2 = (Button)findViewById(R.id.btn2);
+		setButtonActive(archerBtn2, global.getCost(2));
+		archerBtn3 = (Button)findViewById(R.id.btn3);
+		setButtonActive(archerBtn3, global.getCost(3));
+		soldierBtn1 = (Button)findViewById(R.id.btn4);
+		setButtonActive(soldierBtn1, global.getCost(4));
+		soldierBtn2 = (Button)findViewById(R.id.btn5);
+		setButtonActive(soldierBtn2, global.getCost(5));
+		soldierBtn3 = (Button)findViewById(R.id.btn6);
+		setButtonActive(soldierBtn3, global.getCost(6));
+		
+		
 		
 	}
 
@@ -66,48 +80,101 @@ public class ShopActivity extends Activity {
 		getMenuInflater().inflate(R.menu.shop, menu);
 		return true;
 	}
+	
+	public void setButtonActive(Button button, int value)
+	{
+		if(value <= money)
+		{
+			button.setEnabled(true);
+		}
+		else
+		{
+			button.setEnabled(false);
+		}
+		if(button == archerBtn2 && global.isDoubleShot() )
+		{
+			button.setEnabled(false);
+			archerCostView2.setText("Purchased");
+		}
+		if(button == archerBtn3 && global.isPiercingShot() )
+		{
+			button.setEnabled(false);
+			archerCostView2.setText("Purchased");
+		}
+	}
+	
 	public void btnArcher1_onClick(View view)
 	{
 		if(updateFunds(global.getCost(1)))
 		{
 			global.incArcherDamgeLevel();
 			archerCostView1.setText(global.getCost(1)+"");
+			setButtonActive(archerBtn1, global.getCost(1));
+
 		}
 	}
 	public void btnArcher2_onClick(View view)
 	{
-		if(updateFunds(global.getCost(1)))
+		if(updateFunds(global.getCost(2)))
 		{
 			global.activateDoubleShot();
-			archer
+			archerCostView2.setText("Purchased");
+			setButtonActive(archerBtn2, global.getCost(2));
+
 		}
 	}
 	public void btnArcher3_onClick(View view)
 	{
-		if(updateFunds(global.getCost(1)))
+		if(updateFunds(global.getCost(3)))
 		{
-			
+			global.activatePiercingShot();
+			archerCostView3.setText("Purchased");
+			setButtonActive(archerBtn3, global.getCost(3));
+
 		}
 	}
 	public void btnSoldier1_onClick(View view)
 	{
-		
+		if(updateFunds(global.getCost(4)))
+		{
+			global.incSoldierDamageLevel();
+			soldierCostView1.setText(global.getCost(4)+"");
+			setButtonActive(soldierBtn1, global.getCost(4));
+
+		}
 	}
 	public void btnSoldier2_onClick(View view)
 	{
-		
+		if(updateFunds(global.getCost(5)))
+		{
+			global.incSoldierSpawnRateLevel();
+			soldierCostView2.setText(global.getCost(5)+"");
+			setButtonActive(soldierBtn2, global.getCost(5));
+
+		}
 	}
 	public void btnSoldier3_onClick(View view)
 	{
-		
+		if(updateFunds(global.getCost(6)))
+		{
+			global.incSoldierHealthLevel();
+			soldierCostView3.setText(global.getCost(6)+"");
+			setButtonActive(soldierBtn3, global.getCost(6));
+
+		}
 	}
+	 public void sendGame(View view)
+	    {
+	    	Intent nextScreen = new Intent(getApplicationContext(),GameActivity.class);
+	    	startActivity(nextScreen);
+	    }
 	
 	
 	public boolean updateFunds(int value)
 	{
 		if(global.subMoney(value))
 		{
-			moneyView.setText(money+"");
+			moneyView.setText(global.getMoney()+"");
 			return true;
 		}
 		return false;

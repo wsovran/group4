@@ -2,13 +2,17 @@ package com.example.archer;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -28,15 +32,27 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	private Globals global;
 	private int score;
 	private int money;
+	private Bitmap allySprites[];
+	private Bitmap archerSprites[];
+	private Bitmap enemySprites[];
+	private Bitmap background;
 
- public MainGamePanel(Context context) {
+ @SuppressLint("NewApi")
+public MainGamePanel(Context context) {
 	 super(context);
-	 
+		setBackground(getResources().getDrawable(R.drawable.background3));
+		setZOrderOnTop(true);
+		
+	 allySprites = new Bitmap[]{BitmapFactory.decodeResource(getResources(), R.drawable.ally_right1),BitmapFactory.decodeResource(getResources(), R.drawable.ally_right2),BitmapFactory.decodeResource(getResources(), R.drawable.ally_right3),BitmapFactory.decodeResource(getResources(), R.drawable.ally_right2)};
+	 archerSprites = new Bitmap[]{BitmapFactory.decodeResource(getResources(), R.drawable.archer_right1),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right3),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2)};
+	 enemySprites = new Bitmap[]{BitmapFactory.decodeResource(getResources(), R.drawable.enemy_left1),BitmapFactory.decodeResource(getResources(), R.drawable.enemy_left2),BitmapFactory.decodeResource(getResources(), R.drawable.enemy_left3),BitmapFactory.decodeResource(getResources(), R.drawable.enemy_left2)};
 	 this.context = (GameActivity) context;
 	 getHolder().addCallback(this);
 	 
+	 
+
 	 //init actors
-	 archer = new Archer(new Bitmap[]{BitmapFactory.decodeResource(getResources(), R.drawable.archer_right1),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right3),BitmapFactory.decodeResource(getResources(), R.drawable.archer_right2)}, 50, 300);
+	 archer = new Archer(archerSprites, 50, 300);
 	 
 	 //init dpad
 	 dpad = new DPad(BitmapFactory.decodeResource(getResources(), R.drawable.d_pad), 0, 500);
@@ -45,10 +61,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	 shoot = new Shoot(BitmapFactory.decodeResource(getResources(), R.drawable.button), 1400, 500);
 	 
 	 thread = new GameThread(getHolder(), this);//create thread
-	 setFocusable(true);
+	 //setFocusable(true);
 	 global = (Globals)((GameActivity)context).getApplication();
 	 money = global.getMoney();
-	
+
 	 
 	 
  }
@@ -59,6 +75,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 
  @Override
  public void surfaceCreated(SurfaceHolder holder) {
+	 //this.setBackgroundColor(Color.RED);
 	 thread.setRunning(true);
 	 thread.start();
  }
@@ -90,7 +107,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 			 }
 			 if(shoot.isTouched() && arrows.size()<5)
 			 {
-				 Arrow arrow = new Arrow(BitmapFactory.decodeResource(getResources(), R.drawable.arrow), archer.getX(), archer.getY(),archer.getAngle(),50);
+				 Arrow arrow = new Arrow(BitmapFactory.decodeResource(getResources(), R.drawable.arrow2), archer.getX(), archer.getY(),archer.getAngle(),global.getArcherDamage());
 				 shoot.handleActionUp(arrow, archer.getAngle());
 				 shoot.setTouched(false);
 				 arrows.add(arrow);
@@ -113,11 +130,11 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
  }
  public void updateEnemy()
  {
-	 enemies.add(new Enemy(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 100, -1, 25, 1900, 10));
+	 enemies.add(new Enemy(enemySprites, global.getEnemyHealth(), ((int)(Math.random()*-4))-1, global.getEnemyDamage(), 1900, 10));
  }
  public void updateAlly()
  {
-	 allies.add(new Ally(BitmapFactory.decodeResource(getResources(), R.drawable.droid_1), 100, 1, 25, 20, 15));
+	 allies.add(new Ally(allySprites, global.getSoldierHealth(), ((int)(Math.random()*4))+1, global.getSoldierDamage(), 20, 10));
  }
  public void scoreDeath(Soldier enemy)
  {
@@ -126,7 +143,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
  }
 
  protected void onDraw(Canvas canvas, int tick) {
-	 canvas.drawColor(Color.BLACK); 
+	 canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 	 Paint paint = new Paint();
 	 paint.setColor(Color.WHITE);
 	 paint.setTextSize(36);

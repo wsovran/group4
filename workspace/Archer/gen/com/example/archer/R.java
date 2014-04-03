@@ -21,30 +21,37 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int archer_right1=0x7f020000;
-        public static final int archer_right2=0x7f020001;
-        public static final int archer_right3=0x7f020002;
-        public static final int arrow=0x7f020003;
-        public static final int button=0x7f020004;
-        public static final int d_pad=0x7f020005;
-        public static final int droid_1=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
+        public static final int ally_right1=0x7f020000;
+        public static final int ally_right2=0x7f020001;
+        public static final int ally_right3=0x7f020002;
+        public static final int archer_right1=0x7f020003;
+        public static final int archer_right2=0x7f020004;
+        public static final int archer_right3=0x7f020005;
+        public static final int arrow2=0x7f020006;
+        public static final int background3=0x7f020007;
+        public static final int button=0x7f020008;
+        public static final int d_pad=0x7f020009;
+        public static final int droid_1=0x7f02000a;
+        public static final int enemy_left1=0x7f02000b;
+        public static final int enemy_left2=0x7f02000c;
+        public static final int enemy_left3=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
     }
     public static final class id {
-        public static final int Button02=0x7f080006;
-        public static final int Button03=0x7f080008;
-        public static final int Button04=0x7f080007;
         public static final int action_settings=0x7f080017;
         public static final int archerBtn1View=0x7f080011;
         public static final int archerBtn2View=0x7f080012;
         public static final int archerBtn3View=0x7f080013;
-        public static final int button1=0x7f080000;
-        public static final int button2=0x7f080001;
+        public static final int btn1=0x7f080003;
+        public static final int btn2=0x7f080000;
+        public static final int btn3=0x7f080001;
+        public static final int btn4=0x7f080007;
+        public static final int btn5=0x7f080006;
+        public static final int btn6=0x7f080008;
         public static final int button3=0x7f080002;
-        public static final int button4=0x7f080003;
         public static final int button5=0x7f080004;
-        public static final int button6=0x7f08000b;
         public static final int button7=0x7f08000c;
+        public static final int continueButton=0x7f08000b;
         public static final int moneyDisplay=0x7f08000e;
         public static final int scoreView=0x7f08000f;
         public static final int soldierBtn1View=0x7f080016;
